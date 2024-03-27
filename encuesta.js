@@ -1,48 +1,49 @@
-class Usuario {
+class Usuario { // mejorar preguntas
   constructor(pregunta, cantidad_respuestas, respuesta, votos, cantidad_preguntas) {
-    this.pregunta = pregunta; //la/s pregunta/s  de la encuesta
-    this.cantidad_respuestas = cantidad_respuestas; // la cantidad de opciones que tendra una pregunta
-    this.respuesta = respuesta; // las descripciones de las opciones
-    this.votos = votos; // voto que recibe cada opción
-    this.cantidad_preguntas = cantidad_preguntas; // la cantidad de preguntas que tendra la encuesta
+    this.pregunta = pregunta;
+    this.cantidad_respuestas = cantidad_respuestas;
+    this.respuesta = respuesta;
+    this.votos = votos;
+    this.cantidad_preguntas = cantidad_preguntas;
   }
 
-  crear() {
-    this.cantidad_preguntas = prompt("¿Cuántas preguntas tendrá la encuesta?"); //pregunto por la cantidad de preguntas que tendra la encuesta
+  crear() { //foreach*** , map
+    this.cantidad_preguntas = prompt("¿Cuántas preguntas tendrá la encuesta?");
     console.log(`Cantidad de preguntas: ${this.cantidad_preguntas}`);
 
-    let preguntas = []; // el array que almacenará las preguntas de la encuesta 
+    let preguntas = [];
 
-    for (let j = 0; j < this.cantidad_preguntas; j++) { // bucle para solicitar el prompt hasta la cantidad de preguntas ingresada
-      this.pregunta = prompt(`Ingresar pregunta ${j + 1}:`); // ingresa la/ pregunta 1,2,3,4,5... hasta cantidad_preguntas
-      console.log(`Pregunta ${j + 1}: ${this.pregunta}`); 
-      this.cantidad_respuestas = parseInt(prompt("Ingrese la cantidad de opciones:")); // Ingresa la cantidad de opciones de la pregunta j+1
+    for (let j = 0; j < this.cantidad_preguntas; j++) {
+      this.pregunta = prompt(`Ingresar pregunta ${j + 1}:`);
+      console.log(`Pregunta ${j + 1}: ${this.pregunta}`);
+      this.cantidad_respuestas = parseInt(prompt("Ingrese la cantidad de opciones:"));
       console.log(`Cantidad de opciones ${this.cantidad_respuestas}`);
 
-      let respuestas = []; // guarda las opciones que se ingresaran al crear la encuesta
+      let respuestas = [];
 
-      if (this.cantidad_respuestas >= 2 && this.cantidad_respuestas <= 8) { // condición para que la cantidad de opciones sea entre 2 y 8
-        for (let i = 0; i < this.cantidad_respuestas; i++) { // bucle para solicitar la i+1 opcion para la j+1 respuesta, hasta la cantidad_respuestas que se ingreso en la linea 19  
-          this.respuesta = prompt(`Ingrese la opcion ${i + 1} para la pregunta ${j + 1}:`); // solicitud de la opcion
+      if (this.cantidad_respuestas >= 1 && this.cantidad_respuestas <= 8) {
+        for (let i = 0; i < this.cantidad_respuestas; i++) {
+          this.respuesta = prompt(`Ingrese la opcion ${i + 1} para la pregunta ${j + 1}:`);
           console.log(`Opcion ${i + 1} para la pregunta ${j + 1}: ${this.respuesta}`);
-          respuestas.push({ texto: this.respuesta, votos: 0 }); // pushea el texto de la opcion con voto cero inicialmente, y lo guarda en respuestas[]
+          respuestas.push({ texto: this.respuesta, votos: 0 });
         }
       } else {
-        console.log("Ingresar valor entre 1 y 8"); // muestra en consola que habia qur ingresar un valor entre 1 y 8
+        console.log("Ingresar valor entre 1 y 8");
       }
+      let pregunta = { texto: this.pregunta, respuestas: respuestas };
+      preguntas.push(pregunta);
 
-      preguntas.push({ texto: this.pregunta, respuestas: respuestas });
     }
     console.log("Preguntas:", preguntas);
     this.pregunta = preguntas;
-    
+
   }
 
-  votar() {
+  votar() { //foreach, map**
     for (let i = 0; i < this.cantidad_preguntas; i++) {
       for (let j = 0; j < this.cantidad_respuestas; j++) {
         console.log(`Pregunta a votar: ${this.pregunta[i].texto} y ${this.pregunta[i].respuestas[j].texto}`);
-        let voto = parseInt(prompt(`"${this.pregunta[i].texto}" \nIngrese 1 para votar por "${this.pregunta[i].respuestas[j].texto}" cualquier numero para seguir:`));
+        let voto = parseInt(prompt(`"${this.pregunta[i].texto}" \nIngrese 1 para votar por "${this.pregunta[i].respuestas[j].texto}":`));
         if (voto === 1) {
           this.pregunta[i].respuestas[j].votos += voto;
           console.log(`Votos registrados para la respuesta "${this.pregunta[i].respuestas[j].texto}": ${this.pregunta[i].respuestas[j].votos}`);
@@ -56,7 +57,28 @@ class Usuario {
   }
 }
 
-const usuario = new Usuario();
+const opcionesEncuesta = new Usuario();
 
-usuario.crear();
-usuario.votar();
+
+function opciones(opcionesEncuesta) { //función recursiva
+  let op = prompt("Ingresar opcion:");
+  switch (op) {
+
+    case "crear":
+      opcionesEncuesta.crear();
+      opciones(opcionesEncuesta);
+      break;
+
+    case "votar":
+      opcionesEncuesta.votar();
+      opciones(opcionesEncuesta);
+      break;
+
+    default:
+      op = prompt("Ingresar opcion:");
+      console.log("Funciona")
+
+  }
+}
+
+opciones(opcionesEncuesta);
