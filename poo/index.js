@@ -20,8 +20,8 @@ class Encuesta {
       cantidadRespuestas = parseInt(cantidadRespuestas);
       console.log(`La pregunta tendrá: ${cantidadRespuestas} opciones`);
 
-      if (!cantidadRespuestas || cantidadRespuestas < 1 || cantidadRespuestas > 8) {
-        console.log("Ingresar valor entre 1 y 8 para la cantidad de opciones.");
+      if (!cantidadRespuestas || cantidadRespuestas <= 1) {
+        console.log("Ingresar valor mayor o igual a 1");
         return;
       }
 
