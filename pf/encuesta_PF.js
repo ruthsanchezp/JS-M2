@@ -18,23 +18,19 @@ function crearEncuesta() {
   const cantidad = prompt("Ingrese cantidad de opciones:");
   const cantidadOpciones = validarCantidad(cantidad);
 
-  if (cantidadOpciones) {
-    console.log(`La pregunta tendrá: ${cantidadOpciones} opciones`);
+ console.log(`La pregunta tendrá: ${cantidadOpciones} opciones`);
 
-    let opciones = [];
+let opciones = [];
 
-    for (let i = 0; i < cantidadOpciones; i++) {
-      let opcion = prompt(`Opción ${i + 1}:`);
-      opciones = [...opciones, opcion];  
+for (let i = 0; i < cantidadOpciones; i++) {
+let opcion = prompt(`Opción ${i + 1}:`);
+ opciones = [...opciones, opcion];  
     }
 
-    encuesta = [...encuesta, { pregunta: pregunta, opciones: opciones }];
-    console.log(encuesta);
-  } else {
-    console.log("error.");
-  }
-  
-  return encuesta;
+  encuesta = [...encuesta, { pregunta: pregunta, opciones: opciones }];
+  console.log(encuesta);
+
+return encuesta;
 }
 
 function votarEncuesta() {
