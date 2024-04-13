@@ -1,22 +1,20 @@
 const esPositivo = numero => numero > 0;
 
-const validarCantidad = (cantidad) => {
-  //cantidad = parseInt(cantidad);
+const validarCantidad = cantidad => {
   if (!isNaN(cantidad) && esPositivo(cantidad)) {
     return cantidad;
   } else {
-    //console.log("Ingresar valor numérico.");
     return null;
   }
 }
 
-const crear = () => {
+let miEncuesta = { preguntas: [] };
 
-  let encuesta = [];
+const crear = () => {
   let opciones = [];
 
   const pregunta = prompt("Ingrese una pregunta:");
-  console.log(`Su pregunta ingresada es ${pregunta}`);
+  console.log(`Usted ingreso: ${pregunta}`);
   const cantidad = prompt("Ingrese cantidad de opciones:");
   const cantidadOpciones = validarCantidad(cantidad);
 
@@ -27,14 +25,32 @@ const crear = () => {
     opciones = [...opciones, opcion];
   }
 
-  encuesta = [...encuesta, { pregunta: pregunta, opciones: opciones }];
-  console.log(encuesta);
+  miEncuesta = { ...miEncuesta, preguntas: [...miEncuesta.preguntas, { pregunta: pregunta, opciones: opciones }] };
+  console.log(miEncuesta);
 
-  return { encuesta: encuesta, opciones: opciones };
+  return miEncuesta;
 }
 
 function votar() {
-  console.log(crear)
+  if (!miEncuesta.preguntas.length) {
+    console.log("No hay encuesta disponible para votar.");
+    return;
+  }
+
+  miEncuesta.preguntas.forEach(pregunta => {
+    console.log("Encuesta actual:", pregunta.pregunta);
+    console.log("Las opciones son:");
+    pregunta.opciones.forEach((opcion, index) => {
+      console.log(`${index + 1}. ${opcion}`);
+    });
+
+    let seleccionOp = parseInt(prompt("Ingrese su opción"));
+    if (seleccionOp >= 1 && seleccionOp <= pregunta.opciones.length) {
+      console.log(`Su opción es "${pregunta.opciones[seleccionOp - 1]}".`); //-1 porque los indices empiezan de 0
+    } else {
+      console.log("No existe esa opión");
+    }
+  });
 }
 
 function opciones() {
