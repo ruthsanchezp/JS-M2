@@ -26,7 +26,9 @@ const crear = () => {
   }
 
   miEncuesta = { ...miEncuesta, preguntas: [...miEncuesta.preguntas, { pregunta: pregunta, opciones: opciones }] };
-  console.log(miEncuesta);
+// spread operator
+
+   console.log(miEncuesta);
 
   return miEncuesta;
 }
