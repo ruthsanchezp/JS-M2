@@ -13,3 +13,6 @@ function crearEncuesta() {
   if (!esPositivo(cantidadPreguntas)) {
     console.log("Debe ingresar un número válido de preguntas.");
   }
+}
+// Falta votar
+// Falta menu
