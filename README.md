@@ -1,4 +1,4 @@
-# Encuestas Interactivas
+# Encuestas Javascript
 
 Este es un programa en JavaScript que permite a los usuarios crear encuestas, votar y ver los resultados en tiempo real. La solución se implementa tanto en Programación Orientada a Objetos (POO) como en Programación Funcional (PF).
 
