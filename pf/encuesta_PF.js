@@ -18,13 +18,3 @@ function crearEncuesta() {
   console.log(`Se crearán ${cantidadPreguntas} preguntas `)
 
 }
-
-//Cantidad de preguntas que tendrá la encuesta
-crearEncuesta()
-  let cantidadPreguntas = parseInt(prompt("¿Cuántas preguntas tendrá la encuesta?"));
-  if (!esPositivo(cantidadPreguntas)) {
-    console.log("Debe ingresar un número válido de preguntas.");
-  }
-}
-// Falta votar
-// Falta menu
