@@ -45,7 +45,7 @@ class Encuesta {
         console.log(`  ${j + 1}. ${respuesta.texto}`);
       });
       while (!respuestaValida) {
-        let voto = parseInt(prompt(`Ingrese su opción (1-${pregunta.respuestas.length}):`));
+        let voto = parseInt(prompt(`Ingrese su opción (1 o ${pregunta.respuestas.length}):`));
         if (!isNaN(voto) && voto >= 1 && voto <= pregunta.respuestas.length) {
           pregunta.respuestas[voto - 1].votos += 1;
           console.log(`Ha votado por "${pregunta.respuestas[voto - 1].texto}": ${pregunta.respuestas[voto - 1].votos}`);
