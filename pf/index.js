@@ -13,9 +13,9 @@ let miEncuesta = { preguntas: [] };
 const crear = () => {
   let opciones = [];
 
-  const pregunta = prompt("Ingrese una pregunta:");
+  const pregunta = prompt("Ingrese una pregunta: Ej. Nacionalidad");
   console.log(`Usted ingreso: ${pregunta}`);
-  const cantidad = prompt("Ingrese cantidad de opciones:");
+  const cantidad = prompt("Ingrese la cantidad de opciones que tendrá su pregunta: Ej. 2");
   const cantidadOpciones = validarCantidad(cantidad);
 
   console.log(`La pregunta tendrá: ${cantidadOpciones} opciones`);
@@ -65,7 +65,7 @@ function opciones() {
       votar();
       break;
     case "salir":
-      console.log("Encuesta finalizada.");
+      console.log("Fin de la encuesta.");
       return;
     default:
       console.log("Opción no válida. Ingrese 'crear', 'votar' o 'salir'.");
